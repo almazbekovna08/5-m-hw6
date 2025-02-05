@@ -1,38 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-# Create your models here.
+from django.contrib.auth.models import AbstractUser
 
-
-class AccountManager(BaseUserManager):
-    def create_user(self, phone, password=None, **extra_fields):
-        if not phone:
-            raise ValueError("The Phone number must be set")
-        user = self.model(phone=phone, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, phone, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        return self.create_user(phone, password, **extra_fields)
-    
-class User(AbstractBaseUser, PermissionsMixin):
-    phone = models.CharField(max_length=15, unique=True)
-    first_name = models.CharField(max_length=50, blank=True, null=True)
-    last_name = models.CharField(max_length=50, blank=True, null=True)
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    
-    objects = AccountManager()
-    
-    USERNAME_FIELD = 'phone'
-    REQUIRED_FIELDS = []
-    
+class User(AbstractUser):
+    phone_number = models.CharField(
+        max_length=50,
+        verbose_name="Номер телефона"
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Дата создания"
+    )
     def __str__(self):
-        return self.phone
-    
+        return self.username
+
     class Meta:
         verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+        verbose_name_plural = "Пользователи"    
+            
     
