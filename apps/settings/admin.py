@@ -5,10 +5,10 @@ from mptt.admin import DraggableMPTTAdmin
 
 # Register your models here.
 
-class ProductImageAdmin(admin.TabularInline):
+class ProductImageAdmin(admin.TabularInline): #TabularInline - ? что он делает
     model = ProductImage
     extra = 1
-    readonly_fields = ['image_tag']
+    readonly_fields = ['image_tag'] # ?
     
     def image_tag(self, obj):
         return format_html('<img src="{}" width="auto" height="50px" />'.format(obj.image.url))

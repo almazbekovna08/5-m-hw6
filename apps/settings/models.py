@@ -1,5 +1,5 @@
 from django.db import models
-from imagekit.models import ProcessedImageField
+from imagekit.models import ProcessedImageField #imagekit за что отвечал
 from imagekit.processors import ResizeToFill
 from apps.utils import get_product_upload_path
 from mptt.fields import TreeForeignKey

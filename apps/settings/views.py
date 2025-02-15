@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from apps.settings.models import Product
 from apps.settings.serializer import ProductSerializer
-from apps.settings.pagition import ProductPagination
+from apps.settings.pagination import ProductPagination
 
 
 class ProductMixins(GenericViewSet,

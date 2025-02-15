@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     # 'rest_framework_simplejwt.token_blacklist',
     'mptt',
     'imagekit',
-    'allauth',
+    'drf_yasg',
+
     
     #apps
     'apps.settings',
